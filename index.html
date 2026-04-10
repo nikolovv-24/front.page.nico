@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vista o Personagem!</title>
+  <title>Veja os Produtos!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f8f9fb 0%, #e8ecf1 100%);
       min-height: 100vh;
-      color: #fff;
+      color: #2d3748;
       overflow-x: hidden;
     }
 
@@ -26,48 +29,50 @@
       padding: 2rem;
     }
     .welcome-emoji {
-      font-size: 5rem;
-      animation: bounce 1s infinite alternate;
-      margin-bottom: 1rem;
+      font-size: 6rem;
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.2));
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-20px); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
     }
     .welcome-title {
-      font-size: 3rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, #e94560, #f5a623, #e94560);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shine 2s linear infinite;
-      margin-bottom: 0.75rem;
-    }
-    @keyframes shine {
-      to { background-position: 200% center; }
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #1a202c;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
     }
     .welcome-subtitle {
-      font-size: 1.2rem;
-      color: #a0aec0;
-      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+      color: #4a5568;
+      margin-bottom: 3rem;
+      font-weight: 500;
+      line-height: 1.6;
     }
     .btn-start {
-      padding: 1rem 3rem;
-      font-size: 1.3rem;
-      font-weight: 700;
+      padding: 0.95rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
       border: none;
-      border-radius: 50px;
-      background: linear-gradient(90deg, #e94560, #f5a623);
+      border-radius: 12px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
       color: #fff;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(233,69,96,0.5);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 16px rgba(59, 130, 246, 0.25);
+      font-family: 'Inter', sans-serif;
     }
     .btn-start:hover {
-      transform: scale(1.07);
-      box-shadow: 0 6px 30px rgba(233,69,96,0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(59, 130, 246, 0.35);
+    }
+    .btn-start:active {
+      transform: translateY(0);
     }
 
     /* ===== GAME SCREEN ===== */
@@ -78,53 +83,62 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(90deg, #c0392b, #e67e22);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      padding: 1rem 2rem;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 1rem;
     }
     .btn-menu {
-      padding: 0.5rem 1.2rem;
-      border: 2px solid #fff;
-      border-radius: 25px;
-      background: transparent;
-      color: #fff;
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      background: #f7f8fa;
+      color: #2d3748;
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
     }
-    .btn-menu:hover { background: rgba(255,255,255,0.2); }
+    .btn-menu:hover {
+      background: #edf2f7;
+      transform: translateY(-1px);
+    }
     .char-nav {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 1rem;
     }
     .char-nav button {
-      background: rgba(255,255,255,0.25);
+      background: #f7f8fa;
       border: none;
-      border-radius: 50%;
-      width: 36px; height: 36px;
-      font-size: 1.1rem;
-      color: #fff;
+      border-radius: 8px;
+      width: 40px; height: 40px;
+      font-size: 1rem;
+      color: #2d3748;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s ease;
     }
-    .char-nav button:hover { background: rgba(255,255,255,0.45); }
+    .char-nav button:hover {
+      background: #edf2f7;
+      transform: scale(1.05);
+    }
     #char-name {
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-size: 1rem;
+      font-weight: 600;
       min-width: 90px;
       text-align: center;
+      color: #2d3748;
+      font-family: 'Inter', sans-serif;
     }
 
     /* GAME AREA */
     .game-area {
       display: flex;
       flex: 1;
-      gap: 1rem;
-      padding: 1rem;
+      gap: 1.5rem;
+      padding: 2rem;
       flex-wrap: wrap;
     }
 
@@ -132,31 +146,145 @@
     .mannequin-panel {
       flex: 1;
       min-width: 260px;
-      background: linear-gradient(180deg, #d4a574 0%, #c4956a 100%);
-      border-radius: 16px;
+      background: #fff;
+      border-radius: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 1.5rem 1rem;
+      padding: 2rem 1.5rem;
       position: relative;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       min-height: 520px;
     }
     .mannequin-panel h2 {
-      color: #5d3a1a;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
+      color: #1a202c;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
     }
 
-    /* SVG mannequin wrapper */
-    .mannequin-wrapper {
+    /* Message wrapper */
+    .message-wrapper {
       position: relative;
-      width: 200px;
-      height: 380px;
-      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+    .product-message {
+      font-size: 1rem;
+      color: #4a5568;
+      padding: 1.5rem;
+      background: #f7f8fa;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      margin: 1rem 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+    }
+    .product-image {
+      width: 320px;
+      height: auto;
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+      margin: 1.5rem 0;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+      border: 1px solid #e2e8f0;
+    }
+    .product-details {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border-radius: 18px;
+      background: #f7f8fa;
+      border: 1px solid #e2e8f0;
+      margin: 0 auto 1rem;
+      text-align: left;
+      transition: all 0.3s ease;
+      visibility: hidden;
+      opacity: 0;
+    }
+    .product-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.35rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .product-price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #059669;
+      margin-bottom: 0.55rem;
+    }
+    .product-desc {
+      font-size: 0.95rem;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    .product-hero {
+      font-size: 2.4rem;
+      display: block;
+      margin-bottom: 0.65rem;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .product-image:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+    }
+    .btn-close {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      background: #f7f8fa;
+      color: #2d3748;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-close:hover {
+      background: #edf2f7;
+      transform: translateY(-2px);
+    }
+    .btn-buy {
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 12px rgba(16, 185, 129, 0.25);
+      visibility: hidden;
+      opacity: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+    }
+    .btn-buy:active {
+      transform: translateY(0);
     }
     .mannequin-svg {
       width: 100%;
@@ -215,67 +343,135 @@
     .wardrobe-panel {
       flex: 1.2;
       min-width: 280px;
-      background: #2c3e50;
-      border-radius: 16px;
-      padding: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
       overflow-y: auto;
       max-height: 600px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      border: 1px solid rgba(226, 232, 240, 0.5);
     }
     .wardrobe-panel h2 {
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.2rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #bdc3c7;
-      margin-bottom: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #1a202c;
+      margin-bottom: 2.5rem;
+      font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
     }
-    .category { margin-bottom: 1rem; }
+    .wardrobe-panel h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e0 100%);
+      border-radius: 2px;
+    }
+    .category { 
+      margin-bottom: 2.5rem; 
+      border-bottom: 1px solid #000; 
+      padding-bottom: 1.5rem; 
+    }
+    .category:last-child { border-bottom: none; }
     .category-title {
-      font-size: 0.85rem;
+      font-size: 1rem;
       font-weight: 700;
-      color: #f39c12;
+      color: #2d3748;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.5rem;
-      padding-bottom: 0.3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+    .category-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 20px;
+      background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+      border-radius: 2px;
     }
     .items-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 1.25rem;
+      justify-content: flex-start;
     }
     .clothing-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 72px;
-      height: 72px;
-      background: #34495e;
-      border-radius: 10px;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #ffffff 0%, #f7f8fa 100%);
+      border-radius: 20px;
       font-size: 1.8rem;
-      cursor: grab;
+      cursor: pointer;
       user-select: none;
-      border: 2px solid transparent;
-      transition: border-color 0.15s, transform 0.15s, background 0.15s;
+      border: none;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .clothing-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.02) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: 20px;
     }
     .clothing-item span.item-label {
-      font-size: 0.55rem;
-      color: #bdc3c7;
-      margin-top: 2px;
+      font-size: 0.5rem;
+      color: #4a5568;
+      margin-top: 6px;
       text-align: center;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.3;
+      max-width: 100%;
+      word-wrap: break-word;
+      z-index: 1;
     }
-    .clothing-item:hover { background: #3d566e; transform: scale(1.07); }
-    .clothing-item.selected { border-color: #2ecc71; background: rgba(46,204,113,0.15); }
+    .clothing-item:hover {
+      background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+    .clothing-item:hover::before {
+      opacity: 1;
+    }
+    .clothing-item.selected {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+    }
     .clothing-item:active { cursor: grabbing; }
     .clothing-item img.wardrobe-img {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
-      margin-bottom: 0.2rem;
+      margin-bottom: 2px;
+      border-radius: 8px;
+      z-index: 1;
     }
     .slot img.equipped-img {
       width: 100%;
@@ -309,7 +505,7 @@
     @media (max-width: 600px) {
       .game-area { flex-direction: column; }
       .wardrobe-panel { max-height: none; }
-      .welcome-title { font-size: 2rem; }
+      .welcome-title { font-size: 2.5rem; }
       .mannequin-panel { min-height: 480px; }
     }
   </style>
@@ -319,8 +515,8 @@
 <!-- ===================== WELCOME SCREEN ===================== -->
 <div id="welcome-screen">
   <div class="welcome-emoji">👗</div>
-  <h1 class="welcome-title">Vista o Personagem!</h1>
-  <p class="welcome-subtitle">Arraste as roupas e crie o visual perfeito</p>
+  <h1 class="welcome-title">Veja os Produtos!</h1>
+  <p class="welcome-subtitle">Clique nos itens para ver em tamanho maior</p>
   <button class="btn-start" onclick="startGame()">🎮 Começar</button>
 </div>
 
@@ -331,9 +527,7 @@
   <header class="game-header">
     <button class="btn-menu" onclick="goMenu()">⬅ Menu</button>
     <div class="char-nav">
-      <!-- <button onclick="prevChar()">◀</button> -->
       <span id="char-name">Homem</span>
-      <!-- <button onclick="nextChar()">▶</button> -->
     </div>
     <div style="width:80px"></div><!-- spacer -->
   </header>
@@ -343,108 +537,37 @@
 
     <!-- MANNEQUIN -->
     <div class="mannequin-panel">
-      <h2>Seu Personagem</h2>
+      <h2>Seu Produto</h2>
 
-      <div class="mannequin-wrapper">
-        <!-- SVG mannequin (inline, no external files) -->
-        <svg class="mannequin-svg" viewBox="0 0 200 380" xmlns="http://www.w3.org/2000/svg">
-          <!-- Head -->
-          <ellipse id="svg-head" cx="100" cy="55" rx="32" ry="35" fill="#f5cba7" stroke="#c39a6e" stroke-width="2"/>
-          <!-- Eyes -->
-          <circle cx="88"  cy="50" r="4" fill="#2c3e50"/>
-          <circle cx="112" cy="50" r="4" fill="#2c3e50"/>
-          <!-- Pupils -->
-          <circle cx="89"  cy="49" r="1.5" fill="#fff"/>
-          <circle cx="113" cy="49" r="1.5" fill="#fff"/>
-          <!-- Mouth -->
-          <path d="M90 65 Q100 72 110 65" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- Ears -->
-          <ellipse cx="68"  cy="55" rx="7" ry="11" fill="#f5cba7" stroke="#c39a6e" stroke-width="1.5"/>
-          <ellipse cx="132" cy="55" rx="7" ry="11" fill="#f5cba7" stroke="#c39a6e" stroke-width="1.5"/>
-          <!-- Neck -->
-          <rect x="90" y="87" width="20" height="22" rx="6" fill="#f5cba7" stroke="#c39a6e" stroke-width="1.5"/>
-          <!-- Torso -->
-          <rect x="68" y="106" width="64" height="95" rx="10" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
-          <!-- Left Arm -->
-          <rect x="38" y="110" width="28" height="75" rx="12" fill="#f5cba7" stroke="#c39a6e" stroke-width="1.5"/>
-          <!-- Right Arm -->
-          <rect x="134" y="110" width="28" height="75" rx="12" fill="#f5cba7" stroke="#c39a6e" stroke-width="1.5"/>
-          <!-- Left Hand -->
-          <ellipse cx="52"  cy="192" rx="13" ry="10" fill="#f5cba7" stroke="#c39a6e" stroke-width="1.5"/>
-          <!-- Right Hand -->
-          <ellipse cx="148" cy="192" rx="13" ry="10" fill="#f5cba7" stroke="#c39a6e" stroke-width="1.5"/>
-          <!-- Left Leg -->
-          <rect x="74"  y="198" width="22" height="100" rx="10" fill="#7f8c8d" stroke="#6c7a7d" stroke-width="1.5"/>
-          <!-- Right Leg -->
-          <rect x="104" y="198" width="22" height="100" rx="10" fill="#7f8c8d" stroke="#6c7a7d" stroke-width="1.5"/>
-          <!-- Left Foot -->
-          <ellipse cx="85"  cy="303" rx="16" ry="9" fill="#5d6d7e" stroke="#4a5568" stroke-width="1.5"/>
-          <!-- Right Foot -->
-          <ellipse cx="115" cy="303" rx="16" ry="9" fill="#5d6d7e" stroke="#4a5568" stroke-width="1.5"/>
-        </svg>
-
-        <!-- Drop slots (on top of SVG) -->
-        <div class="slot" id="slot-hat"
-             data-category="hat"
-             ondragover="onDragOver(event, this)"
-             ondragleave="onDragLeave(this)"
-             ondrop="onDrop(event, this)"
-             ondblclick="removeSlot(this)"
-             title="Duplo clique para remover">
-          <span class="slot-hint">🎩</span>
+      <div class="message-wrapper">
+        <p class="product-message" id="product-message"><span class="product-hero">🛍️</span>Clique em um item do guarda-roupa para visualizar o produto em tamanho maior!</p>
+        <img class="product-image" id="product-image" src="" alt="Produto" style="visibility: hidden; opacity: 0;" />
+        <div class="product-details" id="product-details" style="visibility: hidden; opacity: 0;">
+          <h3 class="product-title" id="product-title"></h3>
+          <p class="product-price" id="product-price"></p>
+          <p class="product-desc" id="product-desc"></p>
         </div>
-        <div class="slot" id="slot-shirt"
-             data-category="shirt"
-             ondragover="onDragOver(event, this)"
-             ondragleave="onDragLeave(this)"
-             ondrop="onDrop(event, this)"
-             ondblclick="removeSlot(this)"
-             title="Duplo clique para remover">
-          <span class="slot-hint">👕</span>
-        </div>
-        <div class="slot" id="slot-pants"
-             data-category="pants"
-             ondragover="onDragOver(event, this)"
-             ondragleave="onDragLeave(this)"
-             ondrop="onDrop(event, this)"
-             ondblclick="removeSlot(this)"
-             title="Duplo clique para remover">
-          <span class="slot-hint">👖</span>
-        </div>
-        <div class="slot" id="slot-shoes"
-             data-category="shoes"
-             ondragover="onDragOver(event, this)"
-             ondragleave="onDragLeave(this)"
-             ondrop="onDrop(event, this)"
-             ondblclick="removeSlot(this)"
-             title="Duplo clique para remover">
-          <span class="slot-hint">👟</span>
-        </div>
-      </div><!-- end mannequin-wrapper -->
-
-      <!-- Action buttons -->
-      <div class="action-buttons">
-        <button class="btn-action btn-clear"  onclick="clearAll()">🗑 Limpar</button>
-        <button class="btn-action btn-random" onclick="randomOutfit()">🎲 Aleatório</button>
+        <button class="btn-buy" id="btn-buy" onclick="goShopping()">✨ Comprar Agora</button>
+        <button class="btn-close" id="btn-close" onclick="closeProduct()" style="visibility: hidden; opacity: 0;">Fechar</button>
       </div>
     </div><!-- end mannequin-panel -->
 
     <!-- WARDROBE -->
     <div class="wardrobe-panel">
-      <h2>👗 Guarda-Roupa</h2>
+      <h2><span style="font-size: 1.5rem; display: inline-block; margin-right: 0.5rem;">👗</span>Guarda-Roupa</h2>
 
       <div class="category">
-        <div class="category-title">🧢 Bonés</div>
+        <div class="category-title"><span style="font-size: 1.2rem; margin-right: 0.3rem;">🧢</span>Bonés</div>
         <div class="items-grid" id="grid-hat"></div>
       </div>
 
       <div class="category">
-        <div class="category-title">👕 Camisetas</div>
+        <div class="category-title"><span style="font-size: 1.2rem; margin-right: 0.3rem;">👕</span>Camisetas</div>
         <div class="items-grid" id="grid-shirt"></div>
       </div>
 
       <div class="category">
-        <div class="category-title">🩳 Shorts</div>
+        <div class="category-title">👖 Calças</div>
         <div class="items-grid" id="grid-pants"></div>
       </div>
 
@@ -461,32 +584,32 @@
 // ===================== DATA =====================
 const CLOTHES = {
   hat:   [
-    { image: 'https://r2.mont.ink/mockups/157850/Preto_989577.png', label: 'Boné'     },
-    { image: 'https://acdn-us.mitiendanube.com/stores/001/115/376/products/bone-dry1-13fc4b011fda6f1aec17413779460924-1024-1024.webp', label: 'Boné'    },
-    { image: 'https://uselinus.com.br/cdn/shop/files/Bone_De_Boa.png?v=1743125081&width=1946', label: 'Boné'  },
-    { image: 'https://uselinus.com.br/cdn/shop/files/Bone_Do_Bem.png?v=1743124174', label: 'Boné' },
-    { image: 'https://havaianas.com.br/cdn/shop/files/4149846-0555-bone-logo-0.png?v=1753445056&width=1445', label: 'Boné'   },
+    { image: 'https://img.lojasrenner.com.br/item/930833084/original/4.jpg', label: 'Boné Panel Tony Hawk com Estampa Skate Park Verde Acqua', link: 'https://www.lojasrenner.com.br/p/bone-5-panel-tony-hawk-com-estampa-skate-park/-/A-930833076-br.lr?sku=930833084' },
+    { image: 'https://img.lojasrenner.com.br/item/930937596/original/5.jpg', label: 'Boné Trucker Camuflado em Sarja com Telinha Cinza', link: 'https://www.lojasrenner.com.br/p/bone-trucker-camuflado-em-sarja-com-telinha/-/A-930937588-br.lr?sku=930937596' },
+    { image: 'https://img.lojasrenner.com.br/item/930988730/original/7.jpg', label: 'Boné Sarja com Estampa Lettering Bordada Verde', link: 'https://www.lojasrenner.com.br/p/bone-em-sarja-com-estampa-lettering-bordada/-/A-930988721-br.lr?sku=930988730' },
+    { image: 'https://img.lojasrenner.com.br/item/847844807/original/3.jpg', label: 'Boné Panel com Bordado New York Preto', link: 'https://www.lojasrenner.com.br/p/bone-aba-curva-em-algodao-06-panel-com-bordado-new-york/-/A-819048070-br.lr?sku=847844807' },
+    { image: 'https://img.lojasrenner.com.br/item/930571838/original/3.jpg', label: 'Boné Sarja com Estampa Stranger Things Preto', link: 'https://www.lojasrenner.com.br/p/bone-trucker-em-sarja-com-estampa-stranger-things/-/A-930571820-br.lr?sku=930571838 ' },
   ],
   shirt: [
-    { image: 'https://mantoclub.com.br/cdn/shop/files/camisa-selecao-brasileira-202627-ii-6466489.webp?v=1770944590', label: 'Camiseta brasil nova' },
-    { image: 'https://dasports.com.br/cdn/shop/products/camisa-selecao-portugal-ii-2022-nike-branco-2488099.png?v=1756700716', label: 'camiseta portugal'   },
-    { image: 'https://bretosports.com.br/cdn/shop/files/Camisa_Selecao_Colombia_II_24_25_Adidas_-_Preto_e_Laranja.png?v=1734637996', label: 'camiseta colombia'   },
-    { image: 'https://images.tcdn.com.br/img/img_prod/1052037/camisa_alemanha_home_2024_25_4609_1_5d3a19895569d9c2bf77a043026d41f5.png', label: 'camiseta alemanha'  },
-    { image: 'https://maltaesportes.com.br/wp-content/uploads/2024/05/download-38-1.webp', label: 'camiseta malta'  },
+    { image: 'https://img.lojasrenner.com.br/item/928282720/original/13.jpg', label: 'Camiseta com Listras nos Ombros Branco/Preto', link: 'https://www.lojasrenner.com.br/p/camiseta-regular-em-algodao-com-listras-nos-ombros/-/A-927733912-br.lr?sku=928282691' },
+    { image: 'https://img.lojasrenner.com.br/item/930334963/original/13.jpg', label: 'camiseta Estampa Charlie Brown jr Branco', link: 'https://www.lojasrenner.com.br/p/camiseta-comfort-em-algodao-com-estampa-charlie-brown-jr/-/A-930334921-br.lr?sku=930334963' },
+    { image: 'https://img.lojasrenner.com.br/item/930591628/original/14.jpg', label: 'camiseta Estampa Anjo Paradise Off White', link: 'https://www.lojasrenner.com.br/p/camiseta-oversized-em-algodao-com-estampa-anjo-paradise/-/A-930591599-br.lr?sku=930591636' },
+    { image: 'https://img.lojasrenner.com.br/item/929437121/original/13.jpg', label: 'camiseta Boxy Estampa Sabotage Off White', link: 'https://www.lojasrenner.com.br/p/camiseta-boxy-em-algodao-com-estampa-sabotage/-/A-929437092-br.lr?sku=929437105' },
+    { image: 'https://img.lojasrenner.com.br/item/930051592/original/13.jpg', label: 'camiseta Oversized Cropped Estampa Tribal Preto', link: 'https://www.lojasrenner.com.br/p/camiseta-oversized-cropped-em-algodao-com-estampa-tribal/-/A-930051488-br.lr?sku=930051568' },
   ],
   pants: [
-    { image: 'https://images.tcdn.com.br/img/img_prod/1044362/shorts_seleo_brasileira_copa_do_mundo_2026_torcedo_1_20260407083842_a5ef9bf8eb1d.jpg', label: 'shorts brasil'    },
-    { image: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/ys/n/30/999d6cea-40c8-4028-bfde-67b7120cd39b.png', label: 'Shorts portugal'   },
-    { image: 'https://acdn-us.mitiendanube.com/stores/001/409/577/products/short-titular-selecao-colombia-i-home-2026-adidas-azul-e-amarelo-unissex-torcedor-authentic-oficial-futebol-copa-do-mundo-2026-85d92d831e744ce06617652295442182-640-0.webp', label: 'Shorts colombia'  },
-    { image: 'https://http2.mlstatic.com/D_NQ_NP_754620-MLB72418952448_102023-O-shorts-alemanha-2022-uniforme-2-preto-adidas-original.webp', label: 'shorts alemanha'  },
-    { image: 'https://maltaesportes.com.br/wp-content/uploads/2025/11/short-selecao-espanha-azul-i-copa-2026-27-home-masculino-JZ5760.jpg', label: 'shorts malta'  },
+    { image: 'https://img.lojasrenner.com.br/item/928710587/original/13.jpg', label: 'Calça Barrel em Jeans com Recortes e Pences Preto', link: 'https://www.lojasrenner.com.br/p/calca-barrel-em-jeans-com-recortes-e-pences/-/A-928710456-br.lr?sku=928710561' },
+    { image: 'https://img.lojasrenner.com.br/item/929392980/original/13.jpg', label: 'Calça Super Baggy em Jeans com Bolso Faca Frontal Azul', link: 'https://www.lojasrenner.com.br/p/calca-super-baggy-em-jeans-com-bolso-faca-frontal/-/A-894064205-COR894064205-203.br.lr?sku=929393018' },
+    { image: 'https://img.lojasrenner.com.br/item/929393317/original/13.jpg', label: 'Calça Mega Baggy em Jeans com Argolas Azul Escuro', link: 'https://www.lojasrenner.com.br/p/calca-mega-baggy-em-jeans-com-argolas/-/A-929393190-br.lr?sku=929393317' },
+    { image: 'https://img.lojasrenner.com.br/item/930709251/original/13.jpg', label: 'Calça Barrel em Jeans com Corrente Azul', link: 'https://www.lojasrenner.com.br/p/calca-barrel-em-jeans-com-corrente/-/A-930709219-br.lr?sku=930709260' },
+    { image: 'https://img.lojasrenner.com.br/item/929699826/original/13.jpg', label: 'Calça Super Baggy em Jeans com Bolso Faca Frontal Azul', link: 'https://www.lojasrenner.com.br/p/calca-super-baggy-em-jeans-com-detalhes-desfiados/-/A-929696713-br.lr?sku=929699834' },
   ],
   shoes: [
-    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVRIRz3Q7i36a450dMPdwFZ2S_mp5nOASZOQ&s', label: 'Tênis'    },
-    { image: 'https://dptafza4tn3d0.cloudfront.net/cache/catalog/CV24226/tenis-nike-air-force-1-preto-CV24226(11)-750x937.jpg', label: 'Sapato'   },
-    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwteI_vdRmWA1nwKxByKzD5n0vrsymwEAuuw&s', label: 'Bota'     },
-    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4uGI0SvUJmvYTVe3-QuHVeKT1pc-1biZEdw&s', label: 'Chinelo'  },
-    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHJw50Y31zN4xLVffrV2fJUza59xhmg1ToMQ&s', label: 'Chinelo'  },
+    { image: 'https://img.lojasrenner.com.br/item/930696315/original/5.jpg', label: 'Tênis Esportivo New Balance 370V1 Azul', link: 'https://www.lojasrenner.com.br/p/tenis-esportivo-new-balance-370v1/-/A-930600918-COR930600918-AZULAC.br.lr?sku=930696358' },
+    { image: 'https://img.lojasrenner.com.br/item/930696500/original/5.jpg', label: 'Tênis BB80 New Balance Azul/Marrom', link: 'https://www.lojasrenner.com.br/p/tenis-casual-bb80-new-balance/-/A-929862224-br.lr?sku=930696551' },
+    { image: 'https://img.lojasrenner.com.br/item/930724427/original/5.jpg', label: 'Tênis Jogging Esportivo 530 New Balance Prata', link: 'https://www.lojasrenner.com.br/p/tenis-jogging-esportivo-530-new-balance/-/A-929862591-br.lr?sku=930724427' },
+    { image: 'https://imgmarketplace.lojasrenner.com.br/20001/2135/7010705586552/7510714190990/2.jpeg', label: 'Tênis New Balance 480 Low Unissex Preto/Cinza', link: 'https://www.lojasrenner.com.br/p/tenis-new-balance-480-low-unissex/-/A-7010705586552-br.lr?sku=7510714190990' },
+    { image: 'https://imgmarketplace.lojasrenner.com.br/20001/2135/7010706020978/7510713091991/2.jpeg', label: 'Tênis New Balance 370v1 Unissex Bege/Bordô', link: 'https://www.lojasrenner.com.br/p/tenis-new-balance-370v1-unissex/-/A-7010706020978-br.lr?sku=7510713091991  ' },
   ],
 };
 
@@ -494,70 +617,12 @@ const CHARACTERS = [
   { name: 'Homem', skinTone: '#f5cba7', legColor: '#7f8c8d' },
 ];
 
-const SKIN_TONES = CHARACTERS.map(c => c.skinTone);
-const LEG_COLORS = CHARACTERS.map(c => c.legColor);
-
-let currentChar = 0;
-let draggedItem = null;  // { image, label, category }
-let touchGhost  = null;  // DOM element for touch clone
-
 // ===================== NAVIGATION =====================
 function startGame() {
   document.getElementById('welcome-screen').style.display = 'none';
   const gs = document.getElementById('game-screen');
   gs.style.display = 'flex';
   buildWardrobe();
-  applyCharacter();
-}
-
-function goMenu() {
-  document.getElementById('game-screen').style.display   = 'none';
-  document.getElementById('welcome-screen').style.display = 'flex';
-}
-
-function prevChar() {
-  currentChar = (currentChar - 1 + CHARACTERS.length) % CHARACTERS.length;
-  clearAll();
-  applyCharacter();
-}
-
-function nextChar() {
-  currentChar = (currentChar + 1) % CHARACTERS.length;
-  clearAll();
-  applyCharacter();
-}
-
-function applyCharacter() {
-  const c = CHARACTERS[currentChar];
-  document.getElementById('char-name').textContent = c.name;
-
-  const svg = document.querySelector('.mannequin-svg');
-  // Update skin colour on relevant SVG elements
-  ['ellipse', 'rect'].forEach(tag => {
-    svg.querySelectorAll(tag).forEach(el => {
-      if (SKIN_TONES.includes(el.getAttribute('fill'))) {
-        el.setAttribute('fill', c.skinTone);
-        el.setAttribute('stroke', darken(c.skinTone, 30));
-      }
-    });
-  });
-  // Leg colour
-  svg.querySelectorAll('rect').forEach(el => {
-    if (LEG_COLORS.includes(el.getAttribute('fill'))) {
-      el.setAttribute('fill', c.legColor);
-      el.setAttribute('stroke', darken(c.legColor, 20));
-    }
-  });
-}
-
-function darken(hex, amount) {
-  let r = parseInt(hex.slice(1,3),16);
-  let g = parseInt(hex.slice(3,5),16);
-  let b = parseInt(hex.slice(5,7),16);
-  r = Math.max(0, r - amount);
-  g = Math.max(0, g - amount);
-  b = Math.max(0, b - amount);
-  return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
 }
 
 // ===================== BUILD WARDROBE =====================
@@ -572,159 +637,80 @@ function buildWardrobe() {
       el.dataset.label    = item.label;
       el.dataset.idx      = idx;
       el.dataset.image    = item.image;
+      el.dataset.link     = item.link;
       el.innerHTML = `
         <img class="wardrobe-img" src="${item.image}" alt="${item.label}" />
         <span class="item-label">${item.label}</span>
       `;
-      el.draggable = true;
 
-      // Mouse drag
-      el.addEventListener('dragstart', onDragStart);
-      el.addEventListener('dragend',   onDragEnd);
-
-      // Double-click to equip
-      el.addEventListener('dblclick', () => equipItem(cat, item.image));
-
-      // Touch support
-      el.addEventListener('touchstart', onTouchStart, { passive: false });
-      el.addEventListener('touchmove',  onTouchMove,  { passive: false });
-      el.addEventListener('touchend',   onTouchEnd,   { passive: false });
+      // Click to show product
+      el.addEventListener('click', () => showProduct(item, cat, idx));
 
       grid.appendChild(el);
     });
   });
 }
 
-// ===================== DRAG & DROP (mouse) =====================
-function onDragStart(e) {
-  const el = e.currentTarget;
-  draggedItem = {
-    image: el.dataset.image,
-    label: el.dataset.label,
-    category: el.dataset.category,
+// ===================== PRODUCT DISPLAY =====================
+let currentProductLink = null;
+
+function getProductPrice(category, idx) {
+  return '';
+}
+
+function getProductDescription(category) {
+  const descriptionMap = {
+    hat: 'Boné leve com acabamento premium e estilo urbano para completar o look.',
+    shirt: 'Camiseta confortável com corte moderno, ideal para o dia a dia.',
+    pants: 'Calça versátil com detalhe de acabamento que valoriza qualquer visual.',
+    shoes: 'Tênis com design esportivo, amortecimento macio e perfil urbano.',
   };
-  el.classList.add('selected');
-  e.dataTransfer.effectAllowed = 'copy';
-  e.dataTransfer.setData('text/plain', JSON.stringify(draggedItem));
+  return descriptionMap[category] || 'Produto com acabamento elegante e ótima usabilidade.';
 }
 
-function onDragEnd(e) {
-  e.currentTarget.classList.remove('selected');
-  draggedItem = null;
+function showProduct(item, category, idx) {
+  document.getElementById('product-message').style.visibility = 'hidden';
+  document.getElementById('product-message').style.opacity = '0';
+  const img = document.getElementById('product-image');
+  img.src = item.image;
+  img.alt = item.label;
+  img.style.visibility = 'visible';
+  img.style.opacity = '1';
+
+  const details = document.getElementById('product-details');
+  document.getElementById('product-title').textContent = item.label;
+  document.getElementById('product-price').textContent = getProductPrice(category, idx);
+  document.getElementById('product-desc').textContent = getProductDescription(category);
+  details.style.visibility = 'visible';
+  details.style.opacity = '1';
+
+  const btnBuy = document.getElementById('btn-buy');
+  btnBuy.style.visibility = 'visible';
+  btnBuy.style.opacity = '1';
+  currentProductLink = item.link;
+  const btn = document.getElementById('btn-close');
+  btn.style.visibility = 'visible';
+  btn.style.opacity = '1';
 }
 
-function onDragOver(e, slot) {
-  e.preventDefault();
-  let data = draggedItem;
-  if (!data) {
-    try { data = JSON.parse(e.dataTransfer.getData('text/plain')); } catch(err) { return; }
+function closeProduct() {
+  document.getElementById('product-message').style.visibility = 'visible';
+  document.getElementById('product-message').style.opacity = '1';
+  document.getElementById('product-image').style.visibility = 'hidden';
+  document.getElementById('product-image').style.opacity = '0';
+  document.getElementById('product-details').style.visibility = 'hidden';
+  document.getElementById('product-details').style.opacity = '0';
+  document.getElementById('btn-buy').style.visibility = 'hidden';
+  document.getElementById('btn-buy').style.opacity = '0';
+  document.getElementById('btn-close').style.visibility = 'hidden';
+  document.getElementById('btn-close').style.opacity = '0';
+  currentProductLink = null;
+}
+
+function goShopping() {
+  if (currentProductLink) {
+    window.open(currentProductLink, '_blank');
   }
-  if (data && data.category && data.category === slot.dataset.category) {
-    slot.classList.add('drag-over');
-    e.dataTransfer.dropEffect = 'copy';
-  }
-}
-
-function onDragLeave(slot) {
-  slot.classList.remove('drag-over');
-}
-
-function onDrop(e, slot) {
-  e.preventDefault();
-  slot.classList.remove('drag-over');
-  let data = draggedItem;
-  if (!data) {
-    try { data = JSON.parse(e.dataTransfer.getData('text/plain')); } catch(err) { return; }
-  }
-  if (data && data.category === slot.dataset.category) {
-    equipSlot(slot, data.image);
-  }
-}
-
-// ===================== TOUCH SUPPORT =====================
-function onTouchStart(e) {
-  e.preventDefault();
-  const el = e.currentTarget;
-  draggedItem = {
-    image:    el.dataset.image,
-    label:    el.dataset.label,
-    category: el.dataset.category,
-    sourceEl: el,
-  };
-  el.classList.add('selected');
-
-  // Create ghost
-  touchGhost = document.createElement('div');
-  touchGhost.className = 'drag-ghost';
-  touchGhost.textContent = el.dataset.emoji;
-  document.body.appendChild(touchGhost);
-  moveTouchGhost(e.touches[0]);
-}
-
-function onTouchMove(e) {
-  e.preventDefault();
-  if (!touchGhost) return;
-  moveTouchGhost(e.touches[0]);
-}
-
-function onTouchEnd(e) {
-  e.preventDefault();
-  if (touchGhost) { touchGhost.remove(); touchGhost = null; }
-  if (!draggedItem) return;
-
-  const touch  = e.changedTouches[0];
-  const target = document.elementFromPoint(touch.clientX, touch.clientY);
-  const slot   = target ? target.closest('.slot') : null;
-
-  if (draggedItem.sourceEl) draggedItem.sourceEl.classList.remove('selected');
-
-  if (slot && slot.dataset.category === draggedItem.category) {
-    equipSlot(slot, draggedItem.image);
-  }
-  draggedItem = null;
-}
-
-function moveTouchGhost(touch) {
-  touchGhost.style.left = touch.clientX + 'px';
-  touchGhost.style.top  = touch.clientY + 'px';
-}
-
-// ===================== EQUIP / REMOVE =====================
-function equipItem(category, image) {
-  const slot = document.getElementById('slot-' + category);
-  if (slot) equipSlot(slot, image);
-}
-
-function equipSlot(slot, image) {
-  if (!image) return;
-  slot.innerHTML = `
-    <img class="equipped-img" src="${image}" alt="${slot.dataset.category}" />
-  `;
-  slot.classList.add('occupied');
-  // Remove slot-hint style re-use
-  const hint = slot.querySelector('.slot-hint');
-  if (hint) hint.remove();
-}
-
-function removeSlot(slot) {
-  if (!slot.classList.contains('occupied')) return;
-  const cat = slot.dataset.category;
-  const hints = { hat:'🎩', shirt:'👕', pants:'👖', shoes:'👟' };
-  slot.innerHTML = `<span class="slot-hint">${hints[cat] || ''}</span>`;
-  slot.classList.remove('occupied');
-}
-
-function clearAll() {
-  document.querySelectorAll('.slot').forEach(s => removeSlot(s));
-}
-
-function randomOutfit() {
-  clearAll();
-  Object.keys(CLOTHES).forEach(cat => {
-    const items = CLOTHES[cat];
-    const pick  = items[Math.floor(Math.random() * items.length)];
-    equipItem(cat, pick.image);
-  });
 }
 </script>
 </body>
