@@ -271,6 +271,18 @@
     .clothing-item:hover { background: #3d566e; transform: scale(1.07); }
     .clothing-item.selected { border-color: #2ecc71; background: rgba(46,204,113,0.15); }
     .clothing-item:active { cursor: grabbing; }
+    .clothing-item img.wardrobe-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      margin-bottom: 0.2rem;
+    }
+    .slot img.equipped-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
 
     /* Drag ghost */
     .drag-ghost {
@@ -319,9 +331,9 @@
   <header class="game-header">
     <button class="btn-menu" onclick="goMenu()">⬅ Menu</button>
     <div class="char-nav">
-      <button onclick="prevChar()">◀</button>
-      <span id="char-name">Guerreiro</span>
-      <button onclick="nextChar()">▶</button>
+      <!-- <button onclick="prevChar()">◀</button> -->
+      <span id="char-name">Homem</span>
+      <!-- <button onclick="nextChar()">▶</button> -->
     </div>
     <div style="width:80px"></div><!-- spacer -->
   </header>
@@ -422,22 +434,22 @@
       <h2>👗 Guarda-Roupa</h2>
 
       <div class="category">
-        <div class="category-title">🧢 Cabelos / Chapéus</div>
+        <div class="category-title">🧢 Bonés</div>
         <div class="items-grid" id="grid-hat"></div>
       </div>
 
       <div class="category">
-        <div class="category-title">👕 Camisas</div>
+        <div class="category-title">👕 Camisetas</div>
         <div class="items-grid" id="grid-shirt"></div>
       </div>
 
       <div class="category">
-        <div class="category-title">👖 Calças</div>
+        <div class="category-title">🩳 Shorts</div>
         <div class="items-grid" id="grid-pants"></div>
       </div>
 
       <div class="category">
-        <div class="category-title">👟 Sapatos</div>
+        <div class="category-title">👟 Tênis</div>
         <div class="items-grid" id="grid-shoes"></div>
       </div>
     </div><!-- end wardrobe-panel -->
@@ -449,30 +461,32 @@
 // ===================== DATA =====================
 const CLOTHES = {
   hat:   [
-    { emoji: '🧢', label: 'Boné'     },
-    { emoji: '👑', label: 'Coroa'    },
-    { emoji: '🎩', label: 'Cartola'  },
-    { emoji: '⛑️', label: 'Capacete' },
-    { emoji: '🪖', label: 'Chapéu'   },
+    { image: 'https://r2.mont.ink/mockups/157850/Preto_989577.png', label: 'Boné'     },
+    { image: 'https://acdn-us.mitiendanube.com/stores/001/115/376/products/bone-dry1-13fc4b011fda6f1aec17413779460924-1024-1024.webp', label: 'Boné'    },
+    { image: 'https://uselinus.com.br/cdn/shop/files/Bone_De_Boa.png?v=1743125081&width=1946', label: 'Boné'  },
+    { image: 'https://uselinus.com.br/cdn/shop/files/Bone_Do_Bem.png?v=1743124174', label: 'Boné' },
+    { image: 'https://havaianas.com.br/cdn/shop/files/4149846-0555-bone-logo-0.png?v=1753445056&width=1445', label: 'Boné'   },
   ],
   shirt: [
-    { emoji: '👕', label: 'Camiseta' },
-    { emoji: '🥋', label: 'Kimono'   },
-    { emoji: '🦺', label: 'Colete'   },
-    { emoji: '👔', label: 'Gravata'  },
-    { emoji: '🧥', label: 'Jaqueta'  },
+    { image: 'https://mantoclub.com.br/cdn/shop/files/camisa-selecao-brasileira-202627-ii-6466489.webp?v=1770944590', label: 'Camiseta brasil nova' },
+    { image: 'https://dasports.com.br/cdn/shop/products/camisa-selecao-portugal-ii-2022-nike-branco-2488099.png?v=1756700716', label: 'camiseta portugal'   },
+    { image: 'https://bretosports.com.br/cdn/shop/files/Camisa_Selecao_Colombia_II_24_25_Adidas_-_Preto_e_Laranja.png?v=1734637996', label: 'camiseta colombia'   },
+    { image: 'https://images.tcdn.com.br/img/img_prod/1052037/camisa_alemanha_home_2024_25_4609_1_5d3a19895569d9c2bf77a043026d41f5.png', label: 'camiseta alemanha'  },
+    { image: 'https://maltaesportes.com.br/wp-content/uploads/2024/05/download-38-1.webp', label: 'camiseta malta'  },
   ],
   pants: [
-    { emoji: '👖', label: 'Jeans'    },
-    { emoji: '🩳', label: 'Shorts'   },
-    { emoji: '🩱', label: 'Bermuda'  },
-    { emoji: '🩲', label: 'Moletom'  },
+    { image: 'https://images.tcdn.com.br/img/img_prod/1044362/shorts_seleo_brasileira_copa_do_mundo_2026_torcedo_1_20260407083842_a5ef9bf8eb1d.jpg', label: 'shorts brasil'    },
+    { image: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/ys/n/30/999d6cea-40c8-4028-bfde-67b7120cd39b.png', label: 'Shorts portugal'   },
+    { image: 'https://acdn-us.mitiendanube.com/stores/001/409/577/products/short-titular-selecao-colombia-i-home-2026-adidas-azul-e-amarelo-unissex-torcedor-authentic-oficial-futebol-copa-do-mundo-2026-85d92d831e744ce06617652295442182-640-0.webp', label: 'Shorts colombia'  },
+    { image: 'https://http2.mlstatic.com/D_NQ_NP_754620-MLB72418952448_102023-O-shorts-alemanha-2022-uniforme-2-preto-adidas-original.webp', label: 'shorts alemanha'  },
+    { image: 'https://maltaesportes.com.br/wp-content/uploads/2025/11/short-selecao-espanha-azul-i-copa-2026-27-home-masculino-JZ5760.jpg', label: 'shorts malta'  },
   ],
   shoes: [
-    { emoji: '👟', label: 'Tênis'    },
-    { emoji: '👞', label: 'Sapato'   },
-    { emoji: '👢', label: 'Bota'     },
-    { emoji: '🩴', label: 'Chinelo'  },
+    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVRIRz3Q7i36a450dMPdwFZ2S_mp5nOASZOQ&s', label: 'Tênis'    },
+    { image: 'https://dptafza4tn3d0.cloudfront.net/cache/catalog/CV24226/tenis-nike-air-force-1-preto-CV24226(11)-750x937.jpg', label: 'Sapato'   },
+    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwteI_vdRmWA1nwKxByKzD5n0vrsymwEAuuw&s', label: 'Bota'     },
+    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4uGI0SvUJmvYTVe3-QuHVeKT1pc-1biZEdw&s', label: 'Chinelo'  },
+    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHJw50Y31zN4xLVffrV2fJUza59xhmg1ToMQ&s', label: 'Chinelo'  },
   ],
 };
 
@@ -484,7 +498,7 @@ const SKIN_TONES = CHARACTERS.map(c => c.skinTone);
 const LEG_COLORS = CHARACTERS.map(c => c.legColor);
 
 let currentChar = 0;
-let draggedItem = null;  // { emoji, label, category }
+let draggedItem = null;  // { image, label, category }
 let touchGhost  = null;  // DOM element for touch clone
 
 // ===================== NAVIGATION =====================
@@ -555,10 +569,13 @@ function buildWardrobe() {
       const el = document.createElement('div');
       el.className = 'clothing-item';
       el.dataset.category = cat;
-      el.dataset.emoji     = item.emoji;
-      el.dataset.label     = item.label;
-      el.dataset.idx       = idx;
-      el.innerHTML = `${item.emoji}<span class="item-label">${item.label}</span>`;
+      el.dataset.label    = item.label;
+      el.dataset.idx      = idx;
+      el.dataset.image    = item.image;
+      el.innerHTML = `
+        <img class="wardrobe-img" src="${item.image}" alt="${item.label}" />
+        <span class="item-label">${item.label}</span>
+      `;
       el.draggable = true;
 
       // Mouse drag
@@ -566,7 +583,7 @@ function buildWardrobe() {
       el.addEventListener('dragend',   onDragEnd);
 
       // Double-click to equip
-      el.addEventListener('dblclick', () => equipItem(cat, item.emoji));
+      el.addEventListener('dblclick', () => equipItem(cat, item.image));
 
       // Touch support
       el.addEventListener('touchstart', onTouchStart, { passive: false });
@@ -582,8 +599,8 @@ function buildWardrobe() {
 function onDragStart(e) {
   const el = e.currentTarget;
   draggedItem = {
-    emoji:    el.dataset.emoji,
-    label:    el.dataset.label,
+    image: el.dataset.image,
+    label: el.dataset.label,
     category: el.dataset.category,
   };
   el.classList.add('selected');
@@ -620,7 +637,7 @@ function onDrop(e, slot) {
     try { data = JSON.parse(e.dataTransfer.getData('text/plain')); } catch(err) { return; }
   }
   if (data && data.category === slot.dataset.category) {
-    equipSlot(slot, data.emoji);
+    equipSlot(slot, data.image);
   }
 }
 
@@ -629,7 +646,7 @@ function onTouchStart(e) {
   e.preventDefault();
   const el = e.currentTarget;
   draggedItem = {
-    emoji:    el.dataset.emoji,
+    image:    el.dataset.image,
     label:    el.dataset.label,
     category: el.dataset.category,
     sourceEl: el,
@@ -662,7 +679,7 @@ function onTouchEnd(e) {
   if (draggedItem.sourceEl) draggedItem.sourceEl.classList.remove('selected');
 
   if (slot && slot.dataset.category === draggedItem.category) {
-    equipSlot(slot, draggedItem.emoji);
+    equipSlot(slot, draggedItem.image);
   }
   draggedItem = null;
 }
@@ -673,13 +690,16 @@ function moveTouchGhost(touch) {
 }
 
 // ===================== EQUIP / REMOVE =====================
-function equipItem(category, emoji) {
+function equipItem(category, image) {
   const slot = document.getElementById('slot-' + category);
-  if (slot) equipSlot(slot, emoji);
+  if (slot) equipSlot(slot, image);
 }
 
-function equipSlot(slot, emoji) {
-  slot.innerHTML = `<span class="equipped-emoji">${emoji}</span>`;
+function equipSlot(slot, image) {
+  if (!image) return;
+  slot.innerHTML = `
+    <img class="equipped-img" src="${image}" alt="${slot.dataset.category}" />
+  `;
   slot.classList.add('occupied');
   // Remove slot-hint style re-use
   const hint = slot.querySelector('.slot-hint');
@@ -703,7 +723,7 @@ function randomOutfit() {
   Object.keys(CLOTHES).forEach(cat => {
     const items = CLOTHES[cat];
     const pick  = items[Math.floor(Math.random() * items.length)];
-    equipItem(cat, pick.emoji);
+    equipItem(cat, pick.image);
   });
 }
 </script>
