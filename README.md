@@ -1,4 +1,4 @@
-# 👗 Vista o Personagem!
+# 👗 Vista o Personagem! nicollas
 
 Jogo interativo de vestir personagem com arrastar e soltar (drag and drop), desenvolvido como página estática HTML. Sem dependências externas — tudo em um único arquivo.
 
