@@ -1,0 +1,12 @@
+{
+  "name": "front-page-nico",
+  "version": "1.0.0",
+  "description": "Jogo interativo de vestir personagem com drag and drop",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["dress-up", "game", "drag-and-drop", "html"],
+  "license": "MIT"
+}
